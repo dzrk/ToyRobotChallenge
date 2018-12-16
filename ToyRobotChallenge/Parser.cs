@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ToyRobotChallenge
@@ -8,22 +9,71 @@ namespace ToyRobotChallenge
     {
         public List<string> GetCmdList(string fileName)
         {
-            List<string> listOfLists = new List<string>();
+            // gets list of valid commands
+
+            List<List<string>> listOfLists = new List<List<string>>();
+
             // opens input file
+            string[] lines = System.IO.File.ReadAllLines(fileName);
+
             // for loop to read input file line by line
+            foreach (string line in lines)
+            {
+                List<string> tempList = new List<string>();
+                tempList = CleanLine(line);
+
+                // appends list of commands from line to temp listOfLists
+                listOfLists.Add(tempList);
+            }
+            var flatList = listOfLists.SelectMany(x => x);
             //  run cleanLine method to return list of strings
-            //  append cleanLine to main list
-            // flatten list
-            return listOfLists;
+
+            // returns flatten list 
+            return flatList.ToList<string>();
         }
 
         public List<string> CleanLine(string line)
         {
+            // returns list of cmds from line
+
             List<string> lineList = new List<string>();
             // splits each line and looks for keywords ie. PLACE, MOVE
-            // if valid cmd, append to lineList
-            // if PLACE && next item in ', , ' concat next item to PLACE string
-            // returns list of cmds from line
+            string[] lineSplit = line.Split(' ');
+            bool isPlace = false;
+            bool isValidate = false;
+            
+            foreach(string word in lineSplit)
+            {
+                if(word == "PLACE")
+                {
+                    // used to concat next line to PLACE command if its in 'x,y,z' format
+                    isPlace = true;
+                }else if(word == "VALIDATE"){
+                    // similiar to above
+                    isValidate = true;
+                }else if(isPlace || isValidate)
+                {
+                    // check if x,y,z format
+                    string[] pos = word.Split(',');
+                    if(pos.Count() == 3)
+                    {
+                        // produce PLACE or VALIDATE command and append to list of valid commands from this line
+                        if (isPlace)
+                        {
+                            lineList.Add("PLACE " + word);
+                            isPlace = false;
+                        }else if (isValidate)
+                        {
+                            lineList.Add("VALIDATE " + word);
+                            isValidate = false;
+                        }
+                    }
+                }else if(word == "MOVE" || word == "LEFT" || word == "RIGHT" || word == "REPORT")
+                {
+                    // standard commands get appended to valid commands list
+                    lineList.Add(word);
+                }
+            }
 
             return lineList;
         }

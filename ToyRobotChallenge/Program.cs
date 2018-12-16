@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ToyRobotChallenge
 {
@@ -8,10 +9,22 @@ namespace ToyRobotChallenge
         {
             Parser parser = new Parser();
             ToyRobot toyRobot = new ToyRobot();
-            // parser produces list of cmds from txt file
-            // foreach cmd in cmdList
-            //  toyrobot executes commands
-            //  exit condition to reset board is REPORT
+
+            // generates valid commands from textfile
+            List<string> cmdList = parser.GetCmdList(@"\\Test Data\Example.txt");
+
+            // runs through each command and passes it to toy robot to execute
+            foreach (var cmd in cmdList)
+            {
+                toyRobot.Execute(cmd);
+                // resets after exit condition VALIDATE as its the last command in example.txt
+                if (cmd.StartsWith("VALIDATE"))
+                {
+                    toyRobot = new ToyRobot();
+                }
+            }
+
+
         }
     }
 }
