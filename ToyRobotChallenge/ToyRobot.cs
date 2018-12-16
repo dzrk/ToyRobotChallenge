@@ -42,7 +42,7 @@ namespace ToyRobotChallenge
         public void Execute(string cmd)
         {
             // check if cmd starting with PLACE, if found, split and call place method
-            // do RotateLeft || RotateRight || Move
+            // do RotateLeft || RotateRight || Move || Report || Validate until echo
             if (cmd.StartsWith("PLACE"))
             {
                 char[] delimChars = { ' ', ',' };
@@ -66,6 +66,10 @@ namespace ToyRobotChallenge
                 catch (FormatException)
                 {
                     Console.WriteLine("{0} or {1} argument is in the wrong format.", placeCmd[1], placeCmd[2]);
+                }
+                catch (OverflowException)
+                {
+                    Console.WriteLine("Either {0} or {1} > {2}.", placeCmd[1], placeCmd[2], Int32.MaxValue);
                 }
             }
             else if (cmd.StartsWith("echo"))

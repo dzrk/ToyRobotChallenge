@@ -12,8 +12,17 @@ namespace ToyRobotChallenge
             Parser parser = new Parser();
             ToyRobot toyRobot = new ToyRobot();
 
-            // generates valid commands from textfile
-            List<string> cmdList = parser.GetCmdList(@"../../Test Data/Test - Command Parsing.txt");
+            string fileChosen;
+            // generates valid commands from textfile specified in argument, defaults to Command Parsing.txt
+            if (args.Length <1)
+            {
+                fileChosen = "Test - Command Parsing.txt";
+            }
+            else
+            {
+                fileChosen = args[0];
+            }
+            List<string> cmdList = parser.GetCmdList(@"../../Test Data/"+ fileChosen);
 
             // runs through each command and passes it to toy robot to execute
             foreach (var cmd in cmdList)
