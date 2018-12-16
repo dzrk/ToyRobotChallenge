@@ -48,14 +48,31 @@ namespace ToyRobotChallenge
                 char[] delimChars = { ' ', ',' };
                 string[] placeCmd = cmd.Split(delimChars);
 
-                int xPlace = Convert.ToInt32(placeCmd[1]);
-                int yPlace = Convert.ToInt32(placeCmd[2]);
-                Facing dirPlace = ConvertToEnum<Facing>(placeCmd[3]);
-                if (isValidPosition(xPlace, yPlace, dirPlace))
+                try
                 {
-                    PlaceRobot(xPlace, yPlace, dirPlace);
+                    int xPlace = Convert.ToInt32(placeCmd[1]);
+                    int yPlace = Convert.ToInt32(placeCmd[2]);
+                    Facing dirPlace = ConvertToEnum<Facing>(placeCmd[3]);
+
+                    if (isValidPosition(xPlace, yPlace, dirPlace))
+                    {
+                        PlaceRobot(xPlace, yPlace, dirPlace);
+                    }
                 }
-            }else if(cmd == "MOVE")
+                catch (ArgumentException)
+                {
+                    Console.WriteLine("{0} is not a valid direction.", placeCmd[3]);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("{0} or {1} argument is in the wrong format.", placeCmd[1], placeCmd[2]);
+                }
+            }
+            else if (cmd.StartsWith("echo"))
+            {
+                Console.WriteLine(cmd.Substring(5));
+            }
+            else if (cmd == "MOVE")
             {
                 MoveForward();
             }
@@ -70,6 +87,19 @@ namespace ToyRobotChallenge
             else if (cmd == "REPORT")
             {
                 Console.WriteLine(ReportPosition());
+            }
+            else if (cmd.StartsWith("VALIDATE"))
+            {
+                // get x,y,z and compare to report position
+                string[] validatePos = cmd.Split(' ');
+                if (validatePos[1] == ReportPosition())
+                {
+                    Console.WriteLine("VALIDATION SUCCESS");
+                }
+                else
+                {
+                    Console.WriteLine("VALIDATION FAILED");
+                }
             }
         }
 
@@ -161,9 +191,14 @@ namespace ToyRobotChallenge
         public string ReportPosition()
         {
             // return toy robots current x,y,facing coords
-            return xCoord.ToString() + ", "
-                + yCoord.ToString() + ", "
+            if(xCoord != -1 || yCoord != -1)
+            {
+                return xCoord.ToString() + ","
+                + yCoord.ToString() + ","
                 + Enum.GetName(direction.GetType(), direction);
+            }
+            return "Robot not placed";
+
         }
 
         public static string ConvertToString(Facing direction)

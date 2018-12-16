@@ -38,12 +38,18 @@ namespace ToyRobotChallenge
 
             List<string> lineList = new List<string>();
             // splits each line and looks for keywords ie. PLACE, MOVE
-            string[] lineSplit = line.Split(' ');
+            string[] lineSplit = line.Split(' ','\t');
             bool isPlace = false;
             bool isValidate = false;
             
             foreach(string word in lineSplit)
             {
+                // passes whole line as command to echo into console then break
+                if (word.StartsWith("echo"))
+                {
+                    lineList.Add(line);
+                    break;
+                }
                 if(word == "PLACE")
                 {
                     // used to concat next line to PLACE command if its in 'x,y,z' format
