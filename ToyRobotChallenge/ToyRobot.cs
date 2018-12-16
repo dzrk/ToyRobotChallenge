@@ -57,10 +57,40 @@ namespace ToyRobotChallenge
         public void RotateLeft()
         {
             // switch case to rotate anticlockwise ie. West to South
+            switch (direction)
+            {
+                case Facing.NORTH:
+                    direction = Facing.WEST;
+                    break;
+                case Facing.WEST:
+                    direction = Facing.SOUTH;
+                    break;
+                case Facing.SOUTH:
+                    direction = Facing.EAST;
+                    break;
+                case Facing.EAST:
+                    direction = Facing.NORTH;
+                    break;
+            }
         }
         public void RotateRight()
         {
             // switch case to rotate clockwise
+            switch (direction)
+            {
+                case Facing.NORTH:
+                    direction = Facing.EAST;
+                    break;
+                case Facing.EAST:
+                    direction = Facing.SOUTH;
+                    break;
+                case Facing.SOUTH:
+                    direction = Facing.WEST;
+                    break;
+                case Facing.WEST:
+                    direction = Facing.NORTH;
+                    break;
+            }
         }
         public void MoveForward()
         {

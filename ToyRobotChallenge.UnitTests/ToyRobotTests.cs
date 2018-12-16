@@ -177,6 +177,7 @@ namespace ToyRobotChallenge.UnitTests
             {
                 for (int y = 0; y < boardHeight; y++)
                 {
+                    toyRobot.PlaceRobot(x, y, Facing.NORTH);
                     RotateRight_AtSpecificBoardPositions_ReturnsTrue(toyRobot, x, y);
                 }
 
@@ -194,6 +195,7 @@ namespace ToyRobotChallenge.UnitTests
             {
                 for (int y = 0; y < boardHeight; y++)
                 {
+                    toyRobot.PlaceRobot(x, y, Facing.NORTH);
                     RotateLeft_AtSpecificBoardPositions_ReturnsTrue(toyRobot, x, y);
                 }
 
