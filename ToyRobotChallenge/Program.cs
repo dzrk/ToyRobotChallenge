@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 
 namespace ToyRobotChallenge
 {
@@ -11,7 +13,7 @@ namespace ToyRobotChallenge
             ToyRobot toyRobot = new ToyRobot();
 
             // generates valid commands from textfile
-            List<string> cmdList = parser.GetCmdList(@"\\Test Data\Example.txt");
+            List<string> cmdList = parser.GetCmdList(@"../../Test Data/Example.txt");
 
             // runs through each command and passes it to toy robot to execute
             foreach (var cmd in cmdList)
@@ -23,7 +25,8 @@ namespace ToyRobotChallenge
                     toyRobot = new ToyRobot();
                 }
             }
-
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey();
 
         }
     }

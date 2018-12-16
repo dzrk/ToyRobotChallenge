@@ -72,15 +72,15 @@ namespace ToyRobotChallenge.UnitTests
             Assert.AreEqual(expected: toyRobot.X, actual: 1);
             Assert.AreEqual(expected: toyRobot.Y, actual: 4);
 
-            // moves to 1,5
+            // moves to 1,4
             toyRobot.MoveForward();
             Assert.AreEqual(expected: toyRobot.X, actual: 1);
-            Assert.AreEqual(expected: toyRobot.Y, actual: 5);
+            Assert.AreEqual(expected: toyRobot.Y, actual: 4);
 
-            // moves to 1,5
+            // moves to 1,4
             toyRobot.MoveForward();
             Assert.AreEqual(expected: toyRobot.X, actual: 1);
-            Assert.AreEqual(expected: toyRobot.Y, actual: 5);
+            Assert.AreEqual(expected: toyRobot.Y, actual: 4);
 
         }
 
@@ -106,14 +106,14 @@ namespace ToyRobotChallenge.UnitTests
             Assert.AreEqual(expected: toyRobot.X, actual: 4);
             Assert.AreEqual(expected: toyRobot.Y, actual: 2);
 
-            // moves to 5,2
+            // moves to 4,2
             toyRobot.MoveForward();
-            Assert.AreEqual(expected: toyRobot.X, actual: 5);
+            Assert.AreEqual(expected: toyRobot.X, actual: 4);
             Assert.AreEqual(expected: toyRobot.Y, actual: 2);
 
-            // moves to 5,2
+            // moves to 4,2
             toyRobot.MoveForward();
-            Assert.AreEqual(expected: toyRobot.X, actual: 5);
+            Assert.AreEqual(expected: toyRobot.X, actual: 4);
             Assert.AreEqual(expected: toyRobot.Y, actual: 2);
 
         }

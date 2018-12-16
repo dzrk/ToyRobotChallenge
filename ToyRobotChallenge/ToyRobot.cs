@@ -7,13 +7,13 @@ namespace ToyRobotChallenge
     public class ToyRobot
     {
         // position of toyrobot
-        int x;
-        int y;
+        int xCoord;
+        int yCoord;
         Facing direction;
 
         // getters/setters for position
-        public int X { get => x; set => x = value; }
-        public int Y { get => y; set => y = value; }
+        public int X { get => xCoord; set => xCoord = value; }
+        public int Y { get => yCoord; set => yCoord = value; }
         public Facing Direction { get => direction; set => direction = value; }
 
         public enum Facing
@@ -35,22 +35,48 @@ namespace ToyRobotChallenge
         // toy robot constructor w/ default values of -1, -1 as a check if it's been placed
         public ToyRobot(int x = -1, int y = -1)
         {
-            this.x = x;
-            this.y = y;
+            this.xCoord = x;
+            this.yCoord = y;
         }
 
         public void Execute(string cmd)
         {
             // check if cmd starting with PLACE, if found, split and call place method
             // do RotateLeft || RotateRight || Move
-            // until REPORT
-            // reset robot for next test
+            if (cmd.StartsWith("PLACE"))
+            {
+                char[] delimChars = { ' ', ',' };
+                string[] placeCmd = cmd.Split(delimChars);
+
+                int xPlace = Convert.ToInt32(placeCmd[1]);
+                int yPlace = Convert.ToInt32(placeCmd[2]);
+                Facing dirPlace = ConvertToEnum<Facing>(placeCmd[3]);
+                if (isValidPosition(xPlace, yPlace, dirPlace))
+                {
+                    PlaceRobot(xPlace, yPlace, dirPlace);
+                }
+            }else if(cmd == "MOVE")
+            {
+                MoveForward();
+            }
+            else if (cmd == "RIGHT")
+            {
+                RotateRight();
+            }
+            else if (cmd == "LEFT")
+            {
+                RotateLeft();
+            }
+            else if (cmd == "REPORT")
+            {
+                Console.WriteLine(ReportPosition());
+            }
         }
 
         public void PlaceRobot(int x, int y, Facing direction)
         {
-            this.x = x;
-            this.y = y;
+            this.xCoord = x;
+            this.yCoord = y;
             this.direction = direction;
         }
 
@@ -95,14 +121,74 @@ namespace ToyRobotChallenge
         public void MoveForward()
         {
             // temp variable to hold x,y
+            int tempX = xCoord;
+            int tempY = yCoord;
+
             // incre position in current direction if valid position
+            switch (direction)
+            {
+                case Facing.NORTH:
+                    tempY++;
+                    if (tempY < boardHeight)
+                    {
+                        yCoord++;
+                    }
+                    break;
+                case Facing.EAST:
+                    tempX++;
+                    if (tempX < boardLength)
+                    {
+                        xCoord++;
+                    }
+                    break;
+                case Facing.SOUTH:
+                    tempY--;
+                    if (tempY >= 0)
+                    {
+                        yCoord--;
+                    }
+                    break;
+                case Facing.WEST:
+                    tempX--;
+                    if (tempX >= 0)
+                    {
+                        xCoord--;
+                    }
+                    break;
+
+            }
         }
         public string ReportPosition()
         {
             // return toy robots current x,y,facing coords
-            return x.ToString() + ", "
-                + y.ToString() + ", "
+            return xCoord.ToString() + ", "
+                + yCoord.ToString() + ", "
                 + Enum.GetName(direction.GetType(), direction);
+        }
+
+        public static string ConvertToString(Facing direction)
+        {
+            return Enum.GetName(direction.GetType(), direction);
+        }
+
+        public static Facing ConvertToEnum<Facing>(String enumValue)
+        {
+            return (Facing)Enum.Parse(typeof(Facing), enumValue);
+        }
+
+        public bool isValidPosition(int xPlace, int yPlace, Facing direction)
+        {
+            bool isValid = false;
+            // check if place position is possible
+            if((xPlace > -1 && xPlace < boardLength) && (yPlace > -1 && yPlace < boardHeight))
+            {
+                // check if direction is a valid direction
+                if (Enum.IsDefined(typeof(Facing), direction))
+                {
+                    isValid = true;
+                }
+            }
+            return isValid;
         }
     }
 
