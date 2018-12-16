@@ -1,0 +1,14 @@
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallege.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallege.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallege.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallege.UnitTests\bin\Debug\ToyRobotChallege.UnitTests.dll
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallege.UnitTests\bin\Debug\ToyRobotChallege.UnitTests.pdb
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallege.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallege.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallege.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallege.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallege.UnitTests\obj\Debug\ToyRobotChallege.UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallege.UnitTests\obj\Debug\ToyRobotChallege.UnitTests.csproj.CoreCompileInputs.cache
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallege.UnitTests\obj\Debug\ToyRobotChallege.UnitTests.csproj.CopyComplete
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallege.UnitTests\obj\Debug\ToyRobotChallege.UnitTests.dll
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallege.UnitTests\obj\Debug\ToyRobotChallege.UnitTests.pdb
