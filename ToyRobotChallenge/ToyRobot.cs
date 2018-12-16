@@ -158,7 +158,7 @@ namespace ToyRobotChallenge
             int tempX = xCoord;
             int tempY = yCoord;
 
-            // incre position in current direction if valid position
+            // incre position in current direction if valid position ie. On the 5x5 board
             switch (direction)
             {
                 case Facing.NORTH:
@@ -205,11 +205,13 @@ namespace ToyRobotChallenge
 
         }
 
+        // converts Enum to string
         public static string ConvertToString(Facing direction)
         {
             return Enum.GetName(direction.GetType(), direction);
         }
 
+        // converts String to Enum
         public static Facing ConvertToEnum<Facing>(String enumValue)
         {
             return (Facing)Enum.Parse(typeof(Facing), enumValue);
