@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ToyRobotChallenge
 {
-    class Parser
+    public class Parser
     {
         public List<string> GetCmdList(string fileName)
         {

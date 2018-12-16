@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToyRobotChallenge", "ToyRobotChallenge\ToyRobotChallenge.csproj", "{781BDF27-9020-44E5-915E-FF2B7307C405}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToyRobotChallenge", "ToyRobotChallenge\ToyRobotChallenge.csproj", "{A8F5A25F-7F3B-4B14-B785-1018EE396A44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToyRobotChallege.UnitTests", "ToyRobotChallege.UnitTests\ToyRobotChallege.UnitTests.csproj", "{0D722EB0-54C0-423F-8329-79BF3CB76CEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToyRobotChallenge.UnitTests", "ToyRobotChallenge.UnitTests\ToyRobotChallenge.UnitTests.csproj", "{CBAD50C3-792A-41B9-BCE1-296252B9EE8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{781BDF27-9020-44E5-915E-FF2B7307C405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{781BDF27-9020-44E5-915E-FF2B7307C405}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{781BDF27-9020-44E5-915E-FF2B7307C405}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{781BDF27-9020-44E5-915E-FF2B7307C405}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0D722EB0-54C0-423F-8329-79BF3CB76CEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D722EB0-54C0-423F-8329-79BF3CB76CEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D722EB0-54C0-423F-8329-79BF3CB76CEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D722EB0-54C0-423F-8329-79BF3CB76CEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8F5A25F-7F3B-4B14-B785-1018EE396A44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8F5A25F-7F3B-4B14-B785-1018EE396A44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8F5A25F-7F3B-4B14-B785-1018EE396A44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8F5A25F-7F3B-4B14-B785-1018EE396A44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBAD50C3-792A-41B9-BCE1-296252B9EE8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBAD50C3-792A-41B9-BCE1-296252B9EE8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBAD50C3-792A-41B9-BCE1-296252B9EE8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBAD50C3-792A-41B9-BCE1-296252B9EE8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

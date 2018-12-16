@@ -1,0 +1,17 @@
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\bin\Debug\ToyRobotChallenge.UnitTests.dll
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\bin\Debug\ToyRobotChallenge.UnitTests.pdb
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\bin\Debug\ToyRobotChallenge.exe
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\bin\Debug\ToyRobotChallenge.pdb
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\bin\Debug\ToyRobotChallenge.exe.config
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\obj\Debug\ToyRobotChallenge.UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\obj\Debug\ToyRobotChallenge.UnitTests.csproj.CoreCompileInputs.cache
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\obj\Debug\ToyRobotChallenge.UnitTests.csproj.CopyComplete
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\obj\Debug\ToyRobotChallenge.UnitTests.dll
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\obj\Debug\ToyRobotChallenge.UnitTests.pdb

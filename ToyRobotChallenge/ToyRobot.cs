@@ -4,12 +4,17 @@ using System.Text;
 
 namespace ToyRobotChallenge
 {
-    class ToyRobot
+    public class ToyRobot
     {
         // position of toyrobot
-        int x; 
-        int y; 
-        Facing direction; 
+        int x;
+        int y;
+        Facing direction;
+
+        // getters/setters for position
+        public int X { get => x; set => x = value; }
+        public int Y { get => y; set => y = value; }
+        public Facing Direction { get => direction; set => direction = value; }
 
         public enum Facing
         {
@@ -22,6 +27,10 @@ namespace ToyRobotChallenge
         // properties of board
         int boardLength = 5;
         int boardHeight = 5;
+
+        // getters/setters for board dimensions
+        public int BoardLength { get => boardLength; set => boardLength = value; }
+        public int BoardHeight { get => boardHeight; set => boardHeight = value; }
 
         // toy robot constructor w/ default values of -1, -1 as a check if it's been placed
         public ToyRobot(int x = -1, int y = -1)
@@ -57,13 +66,14 @@ namespace ToyRobotChallenge
         {
             // temp variable to hold x,y
             // incre position in current direction if valid position
-        } 
+        }
         public string ReportPosition()
         {
             // return toy robots current x,y,facing coords
             return x.ToString() + ", "
                 + y.ToString() + ", "
-                + Enum.GetName(direction.GetType(),direction);
+                + Enum.GetName(direction.GetType(), direction);
         }
     }
+
 }
