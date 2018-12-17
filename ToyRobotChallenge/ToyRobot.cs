@@ -39,42 +39,35 @@ namespace ToyRobotChallenge
             this.yCoord = y;
         }
 
-        public void Execute(string cmd)
+        public string Execute(string cmd)
         {
             // check if cmd starting with PLACE, if found, split and call place method
             // do RotateLeft || RotateRight || Move || Report || Validate until echo
+            string result = "";
+
             if (cmd.StartsWith("PLACE"))
             {
                 char[] delimChars = { ' ', ',' };
                 string[] placeCmd = cmd.Split(delimChars);
+                Facing dirPlace;
 
-                try
+                if (Enum.TryParse<Facing>(placeCmd[3], out dirPlace))
                 {
+
                     int xPlace = Convert.ToInt32(placeCmd[1]);
                     int yPlace = Convert.ToInt32(placeCmd[2]);
-                    Facing dirPlace = ConvertToEnum<Facing>(placeCmd[3]);
 
                     if (isValidPosition(xPlace, yPlace, dirPlace))
                     {
                         PlaceRobot(xPlace, yPlace, dirPlace);
                     }
                 }
-                catch (ArgumentException)
-                {
-                    Console.WriteLine("{0} is not a valid direction.", placeCmd[3]);
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("{0} or {1} argument is in the wrong format.", placeCmd[1], placeCmd[2]);
-                }
-                catch (OverflowException)
-                {
-                    Console.WriteLine("Either {0} or {1} > {2}.", placeCmd[1], placeCmd[2], Int32.MaxValue);
-                }
+                
             }
             else if (cmd.StartsWith("echo"))
             {
-                Console.WriteLine(cmd.Substring(5));
+                result = cmd.Substring(5);
+                Console.WriteLine(result);
             }
             else if (cmd == "MOVE")
             {
@@ -90,7 +83,9 @@ namespace ToyRobotChallenge
             }
             else if (cmd == "REPORT")
             {
-                Console.WriteLine(ReportPosition());
+                result = ReportPosition();
+                Console.WriteLine(result);
+
             }
             else if (cmd.StartsWith("VALIDATE"))
             {
@@ -98,13 +93,16 @@ namespace ToyRobotChallenge
                 string[] validatePos = cmd.Split(' ');
                 if (validatePos[1] == ReportPosition())
                 {
-                    Console.WriteLine("VALIDATION SUCCESS");
+                    result = "VALIDATION SUCCESS";
+                    Console.WriteLine(result);
                 }
                 else
                 {
-                    Console.WriteLine("VALIDATION FAILED");
+                    result = "VALIDATION FAILED";
+                    Console.WriteLine(result);
                 }
             }
+            return result;
         }
 
         public void PlaceRobot(int x, int y, Facing direction)
@@ -224,10 +222,20 @@ namespace ToyRobotChallenge
             if((xPlace > -1 && xPlace < boardLength) && (yPlace > -1 && yPlace < boardHeight))
             {
                 // check if direction is a valid direction
-                if (Enum.IsDefined(typeof(Facing), direction))
+                if (isValidDirection(direction))
                 {
                     isValid = true;
                 }
+            }
+            return isValid;
+        }
+
+        public bool isValidDirection(Facing direction)
+        {
+            bool isValid = false;
+            if (Enum.IsDefined(typeof(Facing), direction))
+            {
+                isValid = true;
             }
             return isValid;
         }

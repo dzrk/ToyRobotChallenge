@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -64,15 +65,25 @@ namespace ToyRobotChallenge
                     if(pos.Count() == 3)
                     {
                         // produce PLACE or VALIDATE command and append to list of valid commands from this line
-                        if (isPlace)
+                        if(isValidInt(pos[0]) && isValidInt(pos[1]))
                         {
-                            lineList.Add("PLACE " + word);
-                            isPlace = false;
-                        }else if (isValidate)
-                        {
-                            lineList.Add("VALIDATE " + word);
-                            isValidate = false;
+                            if (isPlace)
+                            {
+                                lineList.Add("PLACE " + word);
+                                isPlace = false;
+                            }
+                            else if (isValidate)
+                            {
+                                lineList.Add("VALIDATE " + word);
+                                isValidate = false;
+                            }
                         }
+                    }
+                    else
+                    {
+                        // failed the hoops so all previous command is invalid
+                        isPlace = false;
+                        isValidate = false;
                     }
                 }else if(word == "MOVE" || word == "LEFT" || word == "RIGHT" || word == "REPORT")
                 {
@@ -84,5 +95,23 @@ namespace ToyRobotChallenge
             return lineList;
         }
 
+        public bool isValidInt(string inputValue)
+        {
+            bool isInt = false;
+            int result;
+            if(int.TryParse(inputValue, out result))
+            {
+                isInt = true;
+            }
+            return isInt;
+        }
+
+        public void WriteToFile(string fileName, string output)
+        {
+            if (output.Length > 1)
+            {
+                File.AppendAllText(@"../../Output/" + fileName, output + Environment.NewLine);
+            }
+        }
     }
 }

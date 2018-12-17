@@ -13,10 +13,12 @@ namespace ToyRobotChallenge
             ToyRobot toyRobot = new ToyRobot();
 
             string fileChosen;
+            string fileOutput = "output.txt";
+
             // generates valid commands from textfile specified in argument, defaults to Command Parsing.txt
             if (args.Length <1)
             {
-                fileChosen = "Test - Command Parsing.txt";
+                fileChosen = "Test - Robot movement.txt";
             }
             else
             {
@@ -27,7 +29,10 @@ namespace ToyRobotChallenge
             // runs through each command and passes it to toy robot to execute
             foreach (var cmd in cmdList)
             {
-                toyRobot.Execute(cmd);
+                // captures result from execution and writes to file
+                string result = toyRobot.Execute(cmd);
+                parser.WriteToFile(fileOutput, result);
+
                 // resets after exit condition is 'echo' as report and validate are inconsistent
                 if (cmd.StartsWith("echo"))
                 {
