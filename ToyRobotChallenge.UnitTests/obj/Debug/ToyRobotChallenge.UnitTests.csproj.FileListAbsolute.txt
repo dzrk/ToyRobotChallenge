@@ -15,3 +15,5 @@ C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\obj\
 C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\obj\Debug\ToyRobotChallenge.UnitTests.csproj.CopyComplete
 C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\obj\Debug\ToyRobotChallenge.UnitTests.dll
 C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\obj\Debug\ToyRobotChallenge.UnitTests.pdb
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\bin\Debug\CommandLine.dll
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge.UnitTests\bin\Debug\CommandLine.xml

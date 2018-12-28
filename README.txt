@@ -26,3 +26,9 @@ Program.cs contains the Main method.
 The classes are split up in a way where Parser.cs handles the cleaning of the input and prepares a command list for ToyRobot.cs to execute. 
 The Execute method in ToyRobot manages what the robot does. The comments in the code should be enough to follow. 
 If not, feel free to email me Derrick.phung12@gmail.com.
+
+Update 1:
+
+Command line argument parsing added for input/output. 
+Can specify text file input name and output name in the format:
+-i "Test - Robot movement.txt" -o "New output.txt"

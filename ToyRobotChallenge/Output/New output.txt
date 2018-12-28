@@ -1,0 +1,20 @@
+Test 1 - Simple PLACE, MOVE & TURN commands
+Expected output: 2,2,WEST
+VALIDATION SUCCESS
+2,2,WEST
+Test 2 - Travel clockwise around the edge of the table
+Expected output: 0,3,NORTH
+VALIDATION SUCCESS
+0,3,NORTH
+Test 3 - Travel clockwise around the edge of the table
+Expected output: 3,0,EAST
+VALIDATION SUCCESS
+3,0,EAST
+Test 4 - Try to travel off the edge of the table
+Expected output: 4,1,EAST & 4,4,NORTH
+VALIDATION SUCCESS
+VALIDATION SUCCESS
+4,1,EAST
+VALIDATION SUCCESS
+VALIDATION SUCCESS
+4,4,NORTH

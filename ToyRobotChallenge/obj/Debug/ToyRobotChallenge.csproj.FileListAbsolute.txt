@@ -5,3 +5,8 @@ C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge\obj\Debug\ToyR
 C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge\obj\Debug\ToyRobotChallenge.csproj.CoreCompileInputs.cache
 C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge\obj\Debug\ToyRobotChallenge.exe
 C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge\obj\Debug\ToyRobotChallenge.pdb
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge\bin\Debug\CommandLine.dll
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge\bin\Debug\System.Console.dll
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge\bin\Debug\System.Reflection.TypeExtensions.dll
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge\bin\Debug\CommandLine.xml
+C:\Users\Derrick\source\repos\ToyRobotChallenge\ToyRobotChallenge\obj\Debug\ToyRobotChallenge.csproj.CopyComplete

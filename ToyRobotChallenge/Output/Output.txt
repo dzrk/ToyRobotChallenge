@@ -1,0 +1,48 @@
+Test 1 - Simple PLACE command
+Expected output: 0,1,NORTH
+VALIDATION SUCCESS
+0,1,NORTH
+Test 2 - Simple PLACE, VALIDATION & REPORT on a single line
+Expected output: 0,1,NORTH
+VALIDATION SUCCESS
+0,1,NORTH
+Test 3 - Commands on multiple & single lines
+Expected output: 0,1,NORTH
+VALIDATION SUCCESS
+0,1,NORTH
+Test 4 - PLACE 0,1,SoUth command failure due to incorrect case
+Expected output: 0,1,NORTH
+VALIDATION FAILED
+Robot not placed
+Test 5 - Command failure due to base case, command or format
+Expected output: 0,1,NORTH
+VALIDATION SUCCESS
+0,1,NORTH
+Test 6 - Lots of bad commands that shouldn't parse
+Expected output: 2,2,EAST
+VALIDATION SUCCESS
+2,2,EAST
+Test 7 - All commands on a single line
+expected output: 0,1,NORTH
+VALIDATION SUCCESS
+0,1,NORTH
+Test 1 - Simple PLACE, MOVE & TURN commands
+Expected output: 2,2,WEST
+VALIDATION SUCCESS
+2,2,WEST
+Test 2 - Travel clockwise around the edge of the table
+Expected output: 0,3,NORTH
+VALIDATION SUCCESS
+0,3,NORTH
+Test 3 - Travel clockwise around the edge of the table
+Expected output: 3,0,EAST
+VALIDATION SUCCESS
+3,0,EAST
+Test 4 - Try to travel off the edge of the table
+Expected output: 4,1,EAST & 4,4,NORTH
+VALIDATION SUCCESS
+VALIDATION SUCCESS
+4,1,EAST
+VALIDATION SUCCESS
+VALIDATION SUCCESS
+4,4,NORTH
