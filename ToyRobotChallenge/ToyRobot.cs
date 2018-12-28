@@ -1,55 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static ToyRobotChallenge.Position;
+
 
 namespace ToyRobotChallenge
 {
     public class ToyRobot
     {
-        // position of toyrobot
-        int xCoord;
-        int yCoord;
-        Facing direction;
+        // robot's board
+        Board currentBoard;
+        Position currentPosition;
 
-        // getters/setters for position
-        public int X { get => xCoord; set => xCoord = value; }
-        public int Y { get => yCoord; set => yCoord = value; }
-        public Facing Direction { get => direction; set => direction = value; }
+        public Position CurrentPosition { get => currentPosition; set => currentPosition = value; }
+        public Board CurrentBoard { get => currentBoard; set => currentBoard = value; }
 
-        public enum Facing
-        {
-            NORTH,
-            SOUTH,
-            EAST,
-            WEST
-        };
-
-        // properties of board
-        int boardLength = 5;
-        int boardHeight = 5;
-
-        // getters/setters for board dimensions
-        public int BoardLength { get => boardLength; set => boardLength = value; }
-        public int BoardHeight { get => boardHeight; set => boardHeight = value; }
 
         // toy robot constructor w/ default values of -1, -1 as a check if it's been placed
-        public ToyRobot(int x = -1, int y = -1)
+        public ToyRobot()
         {
-            this.xCoord = x;
-            this.yCoord = y;
+            currentPosition = new Position();
         }
 
-        public string Execute(string cmd)
+        public string Execute(string cmd, Board board)
         {
             // check if cmd starting with PLACE, if found, split and call place method
             // do RotateLeft || RotateRight || Move || Report || Validate until echo
             string result = "";
+            currentBoard = board;
 
             if (cmd.StartsWith("PLACE"))
             {
                 char[] delimChars = { ' ', ',' };
                 string[] placeCmd = cmd.Split(delimChars);
-                Facing dirPlace;
+                Facing dirPlace = currentPosition.Direction;
 
                 if (Enum.TryParse<Facing>(placeCmd[3], out dirPlace))
                 {
@@ -107,84 +91,84 @@ namespace ToyRobotChallenge
 
         public void PlaceRobot(int x, int y, Facing direction)
         {
-            this.xCoord = x;
-            this.yCoord = y;
-            this.direction = direction;
+            currentPosition.X = x;
+            currentPosition.Y = y;
+            currentPosition.Direction = direction;
         }
 
         public void RotateLeft()
         {
             // switch case to rotate anticlockwise ie. West to South
-            switch (direction)
+            switch (currentPosition.Direction)
             {
                 case Facing.NORTH:
-                    direction = Facing.WEST;
+                    currentPosition.Direction = Facing.WEST;
                     break;
                 case Facing.WEST:
-                    direction = Facing.SOUTH;
+                    currentPosition.Direction = Facing.SOUTH;
                     break;
                 case Facing.SOUTH:
-                    direction = Facing.EAST;
+                    currentPosition.Direction = Facing.EAST;
                     break;
                 case Facing.EAST:
-                    direction = Facing.NORTH;
+                    currentPosition.Direction = Facing.NORTH;
                     break;
             }
         }
         public void RotateRight()
         {
             // switch case to rotate clockwise
-            switch (direction)
+            switch (currentPosition.Direction)
             {
                 case Facing.NORTH:
-                    direction = Facing.EAST;
+                    currentPosition.Direction = Facing.EAST;
                     break;
                 case Facing.EAST:
-                    direction = Facing.SOUTH;
+                    currentPosition.Direction = Facing.SOUTH;
                     break;
                 case Facing.SOUTH:
-                    direction = Facing.WEST;
+                    currentPosition.Direction = Facing.WEST;
                     break;
                 case Facing.WEST:
-                    direction = Facing.NORTH;
+                    currentPosition.Direction = Facing.NORTH;
                     break;
             }
         }
         public void MoveForward()
         {
             // temp variable to hold x,y
-            int tempX = xCoord;
-            int tempY = yCoord;
+            int tempX = currentPosition.X;
+            int tempY = currentPosition.Y;
 
             // incre position in current direction if valid position ie. On the 5x5 board
-            switch (direction)
+            switch (currentPosition.Direction)
             {
                 case Facing.NORTH:
                     tempY++;
-                    if (tempY < boardHeight)
+                    if (tempY < currentBoard.Height)
                     {
-                        yCoord++;
+                        currentPosition.Y++;
                     }
                     break;
                 case Facing.EAST:
                     tempX++;
-                    if (tempX < boardLength)
+                    if (tempX < currentBoard.Length)
                     {
-                        xCoord++;
+                        currentPosition.X++;
                     }
                     break;
                 case Facing.SOUTH:
                     tempY--;
                     if (tempY >= 0)
                     {
-                        yCoord--;
+                        currentPosition.Y--;
                     }
                     break;
                 case Facing.WEST:
                     tempX--;
                     if (tempX >= 0)
                     {
-                        xCoord--;
+                        currentPosition.X--;
                     }
                     break;
 
@@ -193,11 +177,11 @@ namespace ToyRobotChallenge
         public string ReportPosition()
         {
             // return toy robots current x,y,facing coords
-            if(xCoord != -1 || yCoord != -1)
+            if(currentPosition.X != -1 || currentPosition.Y != -1)
             {
-                return xCoord.ToString() + ","
-                + yCoord.ToString() + ","
-                + Enum.GetName(direction.GetType(), direction);
+                return currentPosition.X.ToString() + ","
+                + currentPosition.Y.ToString() + ","
+                + Enum.GetName(currentPosition.Direction.GetType(), currentPosition.Direction);
             }
             return "Robot not placed";
 
@@ -219,7 +203,7 @@ namespace ToyRobotChallenge
         {
             bool isValid = false;
             // check if place position is possible
-            if((xPlace > -1 && xPlace < boardLength) && (yPlace > -1 && yPlace < boardHeight))
+            if((xPlace > -1 && xPlace < currentBoard.Length) && (yPlace > -1 && yPlace < currentBoard.Height))
             {
                 // check if direction is a valid direction
                 if (isValidDirection(direction))

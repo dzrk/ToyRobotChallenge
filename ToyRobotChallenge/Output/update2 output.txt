@@ -1,0 +1,28 @@
+Test 1 - Simple PLACE command
+Expected output: 0,1,NORTH
+VALIDATION SUCCESS
+0,1,NORTH
+Test 2 - Validation should fail.  Robot is at 1,1,WEST, but validation of 2,2,WEST happens
+Expected output: Position validation should fail
+VALIDATION FAILED
+1,1,WEST
+Test 3 - PLACE command executed for the same position multiple times
+Expected output: 2,2,WEST
+VALIDATION SUCCESS
+2,2,WEST
+Test 4 - PLACE command executed for all positions on a 5x5 board
+Expected output: 4,4,SOUTH
+4,4,SOUTH
+VALIDATION SUCCESS
+Test 5 - PLACE command should be skipped because -ve values can't be parsed
+Expected output: 4,4,SOUTH
+Robot not placed
+VALIDATION FAILED
+Test 6 - X/Y values of place commands to big for 5x5 board
+Expected output: 4,4,SOUTH
+4,4,SOUTH
+VALIDATION SUCCESS
+Test 7 - X/Y values cause overflow
+Expected output: 4,4,SOUTH
+4,4,WEST
+VALIDATION SUCCESS

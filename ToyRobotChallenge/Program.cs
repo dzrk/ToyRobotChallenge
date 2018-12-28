@@ -11,6 +11,7 @@ namespace ToyRobotChallenge
         static void Main(string[] args)
         {
             Parser parser = new Parser();
+            Board board = new Board();
             ToyRobot toyRobot = new ToyRobot();
 
             // parse cmd line arguments
@@ -25,12 +26,13 @@ namespace ToyRobotChallenge
             foreach (var cmd in cmdList)
             {
                 // captures result from execution and writes to file
-                string result = toyRobot.Execute(cmd);
+                string result = toyRobot.Execute(cmd, board);
                 parser.WriteToFile(options.OutputFile, result);
 
                 // resets after exit condition is 'echo' as report and validate are inconsistent
                 if (cmd.StartsWith("echo"))
                 {
+                    board = new Board();
                     toyRobot = new ToyRobot();
                 }
             }
