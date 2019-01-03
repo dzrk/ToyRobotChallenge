@@ -69,22 +69,22 @@ namespace ToyRobotChallenge.UnitTests
             toyRobot.Execute("PLACE 1,2,NORTH", board);
 
             // moves to 1,3
-            toyRobot.MoveForward();
+            toyRobot.MoveForward(board);
             Assert.AreEqual(expected: toyRobot.CurrentPosition.X, actual: 1);
             Assert.AreEqual(expected: toyRobot.CurrentPosition.Y, actual: 3);
 
             // moves to 1,4
-            toyRobot.MoveForward();
+            toyRobot.MoveForward(board);
             Assert.AreEqual(expected: toyRobot.CurrentPosition.X, actual: 1);
             Assert.AreEqual(expected: toyRobot.CurrentPosition.Y, actual: 4);
 
             // moves to 1,4
-            toyRobot.MoveForward();
+            toyRobot.MoveForward(board);
             Assert.AreEqual(expected: toyRobot.CurrentPosition.X, actual: 1);
             Assert.AreEqual(expected: toyRobot.CurrentPosition.Y, actual: 4);
 
             // moves to 1,4
-            toyRobot.MoveForward();
+            toyRobot.MoveForward(board);
             Assert.AreEqual(expected: toyRobot.CurrentPosition.X, actual: 1);
             Assert.AreEqual(expected: toyRobot.CurrentPosition.Y, actual: 4);
 
@@ -99,27 +99,27 @@ namespace ToyRobotChallenge.UnitTests
             toyRobot.Execute("PLACE 1,2,EAST", board);
 
             // moves to 2,2
-            toyRobot.MoveForward();
+            toyRobot.MoveForward(board);
             Assert.AreEqual(expected: toyRobot.CurrentPosition.X, actual: 2);
             Assert.AreEqual(expected: toyRobot.CurrentPosition.Y, actual: 2);
 
             // moves to 3,2
-            toyRobot.MoveForward();
+            toyRobot.MoveForward(board);
             Assert.AreEqual(expected: toyRobot.CurrentPosition.X, actual: 3);
             Assert.AreEqual(expected: toyRobot.CurrentPosition.Y, actual: 2);
 
             // moves to 4,2
-            toyRobot.MoveForward();
+            toyRobot.MoveForward(board);
             Assert.AreEqual(expected: toyRobot.CurrentPosition.X, actual: 4);
             Assert.AreEqual(expected: toyRobot.CurrentPosition.Y, actual: 2);
 
             // moves to 4,2
-            toyRobot.MoveForward();
+            toyRobot.MoveForward(board);
             Assert.AreEqual(expected: toyRobot.CurrentPosition.X, actual: 4);
             Assert.AreEqual(expected: toyRobot.CurrentPosition.Y, actual: 2);
 
             // moves to 4,2
-            toyRobot.MoveForward();
+            toyRobot.MoveForward(board);
             Assert.AreEqual(expected: toyRobot.CurrentPosition.X, actual: 4);
             Assert.AreEqual(expected: toyRobot.CurrentPosition.Y, actual: 2);
 
@@ -221,5 +221,54 @@ namespace ToyRobotChallenge.UnitTests
 
             }
         }
+        [TestMethod]
+        public void Move_MoveThroughObstacle_ReturnsTrue()
+        {
+            // robot must not move if theres an obstacle
+            var board = new Board();
+            var robot = new ToyRobot();
+
+            board.Execute("OBSTACLE 2,2",robot);
+            robot.Execute("PLACE 2,1,NORTH",board);
+            robot.Execute("MOVE",board);
+
+            Assert.AreEqual(expected: robot.CurrentPosition.X, actual: 2);
+            Assert.AreEqual(expected: robot.CurrentPosition.Y, actual: 1);
+
+        }
+
+        [TestMethod]
+        public void Place_PlaceOnObstacle_ReturnsTrue()
+        {
+            // robot must not place on an obstacle
+            var board = new Board();
+            var robot = new ToyRobot();
+
+            board.Execute("OBSTACLE 2,2", robot);
+            robot.Execute("PLACE 2,3,NORTH", board);
+            robot.Execute("PLACE 2,2,NORTH", board);
+
+            Assert.AreEqual(expected: robot.CurrentPosition.X, actual: 2);
+            Assert.AreEqual(expected: robot.CurrentPosition.Y, actual: 3);
+
+        }
+
+        [TestMethod]
+        public void Obstacle_ObstacleOnRobot_ReturnsTrue()
+        {
+            // obstacle must not be placed on robot
+            var board = new Board();
+            var robot = new ToyRobot();
+
+            
+            robot.Execute("PLACE 2,3,NORTH", board);
+            robot.Execute("PLACE 2,2,NORTH", board);
+            board.Execute("OBSTACLE 2,2", robot);
+
+            Assert.AreEqual(expected:board.ObstacleList.Count, actual: 0);
+
+        }
     }
+
 }
+

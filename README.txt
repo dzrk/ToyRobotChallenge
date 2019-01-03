@@ -32,3 +32,9 @@ Update 1:
 Command line argument parsing added for input/output. 
 Can specify text file input name and output name in the format:
 -i "Test - Robot movement.txt" -o "New output.txt"
+
+Update 2:
+
+Implemented obstacles, obstacle test cases and one new test data file. New command "OBSTACLE x,y".
+Abstracted board and position from toyrobot to reduce complexity.
+Board/ToyRobot handle their own set of commands now. ie. board = Obstacle/validate, toy = place/move/left

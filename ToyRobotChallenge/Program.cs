@@ -12,7 +12,7 @@ namespace ToyRobotChallenge
         {
             Parser parser = new Parser();
             Board board = new Board();
-            ToyRobot toyRobot = new ToyRobot();
+            ToyRobot robot = new ToyRobot();
 
             // parse cmd line arguments
             Options options = new Options();
@@ -26,14 +26,25 @@ namespace ToyRobotChallenge
             foreach (var cmd in cmdList)
             {
                 // captures result from execution and writes to file
-                string result = toyRobot.Execute(cmd, board);
+
+                var firstCmd = cmd.Split(' ')[0];
+                string result = "";
+
+                if (ToyRobot.IsToyCommand(firstCmd))
+                {
+                    result = robot.Execute(cmd, board);
+                }else if (Board.IsBoardCommand(firstCmd))
+                {
+                    result = board.Execute(cmd, robot);
+                }
+
                 parser.WriteToFile(options.OutputFile, result);
 
                 // resets after exit condition is 'echo' as report and validate are inconsistent
                 if (cmd.StartsWith("echo"))
                 {
                     board = new Board();
-                    toyRobot = new ToyRobot();
+                    robot = new ToyRobot();
                 }
             }
                    

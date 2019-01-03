@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using static ToyRobotChallenge.Position;
 
@@ -8,9 +9,10 @@ namespace ToyRobotChallenge
 {
     public class ToyRobot
     {
-        // robot's board
         Board currentBoard;
         Position currentPosition;
+
+        static string[] _commands = { "PLACE", "MOVE", "LEFT", "RIGHT", "REPORT" };
 
         public Position CurrentPosition { get => currentPosition; set => currentPosition = value; }
         public Board CurrentBoard { get => currentBoard; set => currentBoard = value; }
@@ -19,13 +21,13 @@ namespace ToyRobotChallenge
         // toy robot constructor w/ default values of -1, -1 as a check if it's been placed
         public ToyRobot()
         {
-            currentPosition = new Position();
+            currentPosition = new Position(-1,-1);
         }
 
         public string Execute(string cmd, Board board)
         {
             // check if cmd starting with PLACE, if found, split and call place method
-            // do RotateLeft || RotateRight || Move || Report || Validate until echo
+            // do RotateLeft || RotateRight || Move || Report
             string result = "";
             currentBoard = board;
 
@@ -41,21 +43,16 @@ namespace ToyRobotChallenge
                     int xPlace = Convert.ToInt32(placeCmd[1]);
                     int yPlace = Convert.ToInt32(placeCmd[2]);
 
-                    if (isValidPosition(xPlace, yPlace, dirPlace))
+                    if (isValidPosition(xPlace, yPlace, dirPlace, board.ObstacleList))
                     {
                         PlaceRobot(xPlace, yPlace, dirPlace);
                     }
                 }
                 
             }
-            else if (cmd.StartsWith("echo"))
-            {
-                result = cmd.Substring(5);
-                Console.WriteLine(result);
-            }
             else if (cmd == "MOVE")
             {
-                MoveForward();
+                MoveForward(board);
             }
             else if (cmd == "RIGHT")
             {
@@ -70,21 +67,6 @@ namespace ToyRobotChallenge
                 result = ReportPosition();
                 Console.WriteLine(result);
 
-            }
-            else if (cmd.StartsWith("VALIDATE"))
-            {
-                // get x,y,z and compare to report position
-                string[] validatePos = cmd.Split(' ');
-                if (validatePos[1] == ReportPosition())
-                {
-                    result = "VALIDATION SUCCESS";
-                    Console.WriteLine(result);
-                }
-                else
-                {
-                    result = "VALIDATION FAILED";
-                    Console.WriteLine(result);
-                }
             }
             return result;
         }
@@ -134,7 +116,7 @@ namespace ToyRobotChallenge
                     break;
             }
         }
-        public void MoveForward()
+        public void MoveForward(Board board)
         {
             // temp variable to hold x,y
             int tempX = currentPosition.X;
@@ -145,28 +127,28 @@ namespace ToyRobotChallenge
             {
                 case Facing.NORTH:
                     tempY++;
-                    if (tempY < currentBoard.Height)
+                    if (tempY < currentBoard.Height && isValidPosition(tempX, tempY, currentPosition.Direction, board.ObstacleList))
                     {
                         currentPosition.Y++;
                     }
                     break;
                 case Facing.EAST:
                     tempX++;
-                    if (tempX < currentBoard.Length)
+                    if (tempX < currentBoard.Length && isValidPosition(tempX, tempY, currentPosition.Direction, board.ObstacleList))
                     {
                         currentPosition.X++;
                     }
                     break;
                 case Facing.SOUTH:
                     tempY--;
-                    if (tempY >= 0)
+                    if (tempY >= 0 && isValidPosition(tempX, tempY, currentPosition.Direction, board.ObstacleList))
                     {
                         currentPosition.Y--;
                     }
                     break;
                 case Facing.WEST:
                     tempX--;
-                    if (tempX >= 0)
+                    if (tempX >= 0 && isValidPosition(tempX, tempY, currentPosition.Direction, board.ObstacleList))
                     {
                         currentPosition.X--;
                     }
@@ -199,18 +181,24 @@ namespace ToyRobotChallenge
             return (Facing)Enum.Parse(typeof(Facing), enumValue);
         }
 
-        public bool isValidPosition(int xPlace, int yPlace, Facing direction)
+        public bool isValidPosition(int xPlace, int yPlace, Facing direction, List<Position> obsList)
         {
             bool isValid = false;
-            // check if place position is possible
-            if((xPlace > -1 && xPlace < currentBoard.Length) && (yPlace > -1 && yPlace < currentBoard.Height))
+            Position newPos = new Position(xPlace, yPlace);
+
+            if (!obsList.Any(x => x.X == xPlace && x.Y == yPlace))
             {
-                // check if direction is a valid direction
-                if (isValidDirection(direction))
+                // check if place position is possible
+                if ((xPlace > -1 && xPlace < currentBoard.Length) && (yPlace > -1 && yPlace < currentBoard.Height))
                 {
-                    isValid = true;
+                    // check if direction is a valid direction
+                    if (isValidDirection(direction))
+                    {
+                        isValid = true;
+                    }
                 }
             }
+
             return isValid;
         }
 
@@ -223,6 +211,13 @@ namespace ToyRobotChallenge
             }
             return isValid;
         }
-    }
 
+        public static bool IsToyCommand(string command)
+        {
+            // check if command in commands
+            return _commands.Any(s=>command.Contains(s));
+        }
+
+
+    }
 }

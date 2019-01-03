@@ -1,0 +1,36 @@
+##############################################################################
+#
+# This is a command file to exercise the robot's interactions with obstacles
+#
+##############################################################################
+
+echo 
+
+##############################################################################
+# Something simple to begin with...
+echo Test 1 - Simple PLACE, OBSTACLE & MOVE commands
+echo Expected output: 2,1,SOUTH
+PLACE 2,2,NORTH
+OBSTACLE 2,3
+MOVE
+LEFT
+LEFT
+MOVE
+MOVE
+VALIDATE 2,1,SOUTH
+REPORT
+echo 
+
+
+##############################################################################
+# Place on obstacle
+echo Test 2 - check if robot can be placed on obstacle
+echo Expected output: 0,3,NORTH
+OBSTACLE 0,4
+PLACE 0,3,NORTH
+PLACE 0,4,NORTH
+MOVE
+VALIDATE 0,3,NORTH
+REPORT
+echo 
+
